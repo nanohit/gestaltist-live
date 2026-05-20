@@ -218,6 +218,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>{$siteContent.hero.heading || 'Конференция'}</title>
+</svelte:head>
+
 <div class="page" style={themeStyle}>
   <!-- ==================== HEADER ==================== -->
   <header class="header">
@@ -992,28 +996,30 @@
                   return { ...s, contact: { ...s.contact, title: v } };
                 })} />
               <div class="contact-info">
-                <a
-                  href={sec.contact.phone ? `tel:${sec.contact.phone.replace(/[^\d+]/g, '')}` : undefined}
-                  class="contact-item contact-link"
-                  onclick={(e) => { if ($isAdmin) e.preventDefault(); }}
-                >
-                  <EditableText tag="span" value={sec.contact.phone} canEdit={$isAdmin} className="contact-text contact-phone"
+                {#if $isAdmin}
+                  <EditableText tag="div" value={sec.contact.phone} canEdit={true} className="contact-text contact-phone contact-multiline"
                     onchange={(v) => updateSection(si, (s) => {
                       if (s.type !== 'registration') return s;
                       return { ...s, contact: { ...s.contact, phone: v } };
                     })} />
-                </a>
-                <a
-                  href={sec.contact.email ? `mailto:${sec.contact.email}` : undefined}
-                  class="contact-item contact-link"
-                  onclick={(e) => { if ($isAdmin) e.preventDefault(); }}
-                >
-                  <EditableText tag="span" value={sec.contact.email} canEdit={$isAdmin} className="contact-text contact-email"
+                  <EditableText tag="div" value={sec.contact.email} canEdit={true} className="contact-text contact-email contact-multiline"
                     onchange={(v) => updateSection(si, (s) => {
                       if (s.type !== 'registration') return s;
                       return { ...s, contact: { ...s.contact, email: v } };
                     })} />
-                </a>
+                  <p class="contact-hint">Shift + Enter — новая строка</p>
+                {:else}
+                  {#each sec.contact.phone.split('\n').map((l) => l.trim()).filter(Boolean) as line}
+                    <a href="tel:{line.replace(/[^\d+]/g, '')}" class="contact-item contact-link">
+                      <span class="contact-text contact-phone">{line}</span>
+                    </a>
+                  {/each}
+                  {#each sec.contact.email.split('\n').map((l) => l.trim()).filter(Boolean) as line}
+                    <a href="mailto:{line}" class="contact-item contact-link">
+                      <span class="contact-text contact-email">{line}</span>
+                    </a>
+                  {/each}
+                {/if}
               </div>
             </div>
           </section>

@@ -941,22 +941,29 @@ body {
 }
 
 .contact-section-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #000000;
-  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7d85;
+  margin-bottom: 18px;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
 .contact-link {
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover .contact-text {
+  color: var(--c-dark);
 }
 
 .contact-link:focus-visible {
@@ -965,34 +972,38 @@ body {
 }
 
 .contact-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: inline-block;
   font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--c);
+  text-align: center;
+}
+
+.contact-multiline {
+  white-space: pre-line;
+  min-width: 200px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 18px;
 }
 
 .contact-phone {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--c);
+  font-weight: 500;
 }
 
 .contact-email {
-  color: var(--c);
-  text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
-.contact-email:hover {
-  color: var(--c-dark);
+.contact-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #94a3a8;
+  text-align: center;
 }
 
 /* ==================== TEXT SECTION ==================== */
