@@ -37,6 +37,8 @@
   let loginField = $state('admin');
   let passwordField = $state('');
   let loginError = $state('');
+  let copiedContact = $state<string | null>(null);
+  let copyResetTimeout: ReturnType<typeof setTimeout> | null = null;
 
   // Session modal state
   let sessionModal = $state<{ si: number; dayIndex: number; sessionIndex: number } | null>(null);
@@ -215,6 +217,43 @@
   function btnGradient(color: string | undefined): string {
     if (!color) return '';
     return `background: ${color}; box-shadow: 0 16px 40px ${color}55;`;
+  }
+
+  function fallbackCopy(text: string) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+
+  async function copyContact(value: string, key: string) {
+    const text = value.trim();
+    if (!text) return;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        fallbackCopy(text);
+      }
+    } catch {
+      fallbackCopy(text);
+    }
+
+    copiedContact = key;
+    if (copyResetTimeout) clearTimeout(copyResetTimeout);
+    copyResetTimeout = setTimeout(() => {
+      copiedContact = null;
+    }, 1600);
+  }
+
+  function contactKey(sectionId: string, field: 'phone' | 'email') {
+    return `${sectionId}:${field}`;
   }
 </script>
 
@@ -997,28 +1036,69 @@
                 })} />
               <div class="contact-info">
                 {#if $isAdmin}
-                  <EditableText tag="div" value={sec.contact.phone} canEdit={true} className="contact-text contact-phone contact-multiline"
-                    onchange={(v) => updateSection(si, (s) => {
-                      if (s.type !== 'registration') return s;
-                      return { ...s, contact: { ...s.contact, phone: v } };
-                    })} />
-                  <EditableText tag="div" value={sec.contact.email} canEdit={true} className="contact-text contact-email contact-multiline"
-                    onchange={(v) => updateSection(si, (s) => {
-                      if (s.type !== 'registration') return s;
-                      return { ...s, contact: { ...s.contact, email: v } };
-                    })} />
-                  <p class="contact-hint">Shift + Enter — новая строка</p>
+                  <div class="contact-admin-fields">
+                    <label class="contact-field">
+                      <span class="contact-field-label">Телефон</span>
+                      <input
+                        type="tel"
+                        value={sec.contact.phone}
+                        autocomplete="tel"
+                        placeholder="+7 000 000-00-00"
+                        oninput={(e) => {
+                          const phone = (e.currentTarget as HTMLInputElement).value;
+                          updateSection(si, (s) => {
+                            if (s.type !== 'registration') return s;
+                            return { ...s, contact: { ...s.contact, phone } };
+                          });
+                        }}
+                      />
+                    </label>
+                    <label class="contact-field">
+                      <span class="contact-field-label">Email</span>
+                      <input
+                        type="email"
+                        value={sec.contact.email}
+                        autocomplete="email"
+                        placeholder="info@example.com"
+                        oninput={(e) => {
+                          const email = (e.currentTarget as HTMLInputElement).value;
+                          updateSection(si, (s) => {
+                            if (s.type !== 'registration') return s;
+                            return { ...s, contact: { ...s.contact, email } };
+                          });
+                        }}
+                      />
+                    </label>
+                  </div>
                 {:else}
-                  {#each sec.contact.phone.split('\n').map((l) => l.trim()).filter(Boolean) as line}
-                    <a href="tel:{line.replace(/[^\d+]/g, '')}" class="contact-item contact-link">
-                      <span class="contact-text contact-phone">{line}</span>
-                    </a>
-                  {/each}
-                  {#each sec.contact.email.split('\n').map((l) => l.trim()).filter(Boolean) as line}
-                    <a href="mailto:{line}" class="contact-item contact-link">
-                      <span class="contact-text contact-email">{line}</span>
-                    </a>
-                  {/each}
+                  {#if sec.contact.phone.trim()}
+                    <button
+                      type="button"
+                      class="contact-item contact-copy-btn"
+                      aria-label="Скопировать телефон"
+                      title="Скопировать телефон"
+                      onclick={() => copyContact(sec.contact.phone, contactKey(sec.id, 'phone'))}
+                    >
+                      <span class="contact-text contact-phone">{sec.contact.phone.trim()}</span>
+                      <span class="contact-copy-status" aria-live="polite">
+                        {copiedContact === contactKey(sec.id, 'phone') ? 'Скопировано' : 'Скопировать'}
+                      </span>
+                    </button>
+                  {/if}
+                  {#if sec.contact.email.trim()}
+                    <button
+                      type="button"
+                      class="contact-item contact-copy-btn"
+                      aria-label="Скопировать email"
+                      title="Скопировать email"
+                      onclick={() => copyContact(sec.contact.email, contactKey(sec.id, 'email'))}
+                    >
+                      <span class="contact-text contact-email">{sec.contact.email.trim()}</span>
+                      <span class="contact-copy-status" aria-live="polite">
+                        {copiedContact === contactKey(sec.id, 'email') ? 'Скопировано' : 'Скопировать'}
+                      </span>
+                    </button>
+                  {/if}
                 {/if}
               </div>
             </div>
