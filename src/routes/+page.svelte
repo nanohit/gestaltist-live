@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { page } from '$app/state';
   import EditableText from '../components/EditableText.svelte';
   import { generateThemeVars } from '$lib/color';
   import {
@@ -8,7 +9,12 @@
     contentStatus,
     contentError,
     updateContent,
+    loadContent,
+    setAdminToken,
+    clearAdminToken,
+    ADMIN_TOKEN_KEY,
   } from '$lib/stores';
+  import { optimizeImage, imageSrcset } from '$lib/image';
 
   let { data } = $props();
   siteContent.set(data.content);
@@ -29,14 +35,13 @@
   } from '$lib/content';
 
   const IMGBB_API_KEY = 'd74efd2fa75705b574e66c040fabe113';
-  const ADMIN_LOGIN = 'admin';
-  const ADMIN_PASSWORD = '123456789';
-  const STORAGE_KEY = 'gestalt-admin-auth';
+  const LEGACY_STORAGE_KEY = 'gestalt-admin-auth';
 
   let isLoginModalOpen = $state(false);
   let loginField = $state('admin');
   let passwordField = $state('');
   let loginError = $state('');
+  let isLoggingIn = $state(false);
   let copiedContact = $state<string | null>(null);
   let copyResetTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -52,14 +57,36 @@
 
   let themeStyle = $derived(generateThemeVars($siteContent.primaryColor || '#0aa5b5'));
 
+  let metaTitle = $derived($siteContent.hero.heading?.trim() || 'Конференция');
+  let metaDescription = $derived.by(() => {
+    const parts: string[] = [$siteContent.hero.label, $siteContent.hero.subheading];
+    for (const d of $siteContent.hero.details ?? []) {
+      if (d.value && !d.isList) parts.push(`${d.label}: ${d.value}`);
+    }
+    return parts
+      .map((p) => (p ?? '').trim())
+      .filter(Boolean)
+      .join('. ')
+      .replace(/\s+/g, ' ')
+      .slice(0, 300);
+  });
+  let metaImage = $derived($siteContent.hero.images?.[0]?.url ?? '');
+  let canonicalUrl = $derived(page.url.origin + page.url.pathname);
+
   onMount(() => {
-    if (localStorage.getItem(STORAGE_KEY) === 'true') {
+    // Старая сессия хранила только флаг — переносим её на токен.
+    if (localStorage.getItem(LEGACY_STORAGE_KEY) === 'true') {
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    }
+    if (localStorage.getItem(ADMIN_TOKEN_KEY)) {
       isAdmin.set(true);
+      // Страница приходит из edge-кэша, админу нужен свежий контент.
+      loadContent();
     }
   });
 
   function handleOpenLogin() {
-    loginField = ADMIN_LOGIN;
+    loginField = 'admin';
     passwordField = '';
     loginError = '';
     isLoginModalOpen = true;
@@ -71,22 +98,35 @@
     loginError = '';
   }
 
-  function handleLoginSubmit(event: SubmitEvent) {
+  async function handleLoginSubmit(event: SubmitEvent) {
     event.preventDefault();
-    if (loginField === ADMIN_LOGIN && passwordField === ADMIN_PASSWORD) {
-      isAdmin.set(true);
-      localStorage.setItem(STORAGE_KEY, 'true');
+    if (isLoggingIn) return;
+    isLoggingIn = true;
+    loginError = '';
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login: loginField, password: passwordField }),
+      });
+      const payload = await res.json();
+      if (!res.ok || !payload.success) {
+        loginError = payload.error || 'Неверный логин или пароль';
+        return;
+      }
+      setAdminToken(payload.token);
+      await loadContent();
       isLoginModalOpen = false;
       passwordField = '';
-      loginError = '';
-    } else {
-      loginError = 'Неверный логин или пароль';
+    } catch {
+      loginError = 'Сервер недоступен, попробуйте ещё раз';
+    } finally {
+      isLoggingIn = false;
     }
   }
 
   function handleLogout() {
-    isAdmin.set(false);
-    localStorage.removeItem(STORAGE_KEY);
+    clearAdminToken();
   }
 
   function scrollToSection(id: string) {
@@ -258,7 +298,25 @@
 </script>
 
 <svelte:head>
-  <title>{$siteContent.hero.heading || 'Конференция'}</title>
+  <title>{metaTitle}</title>
+  <meta name="description" content={metaDescription} />
+  <meta name="theme-color" content={$siteContent.primaryColor || '#0aa5b5'} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={metaTitle} />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content={metaTitle} />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  {#if metaImage}
+    <meta property="og:image" content={metaImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={metaImage} />
+  {:else}
+    <meta name="twitter:card" content="summary" />
+  {/if}
+  <meta name="twitter:title" content={metaTitle} />
+  <meta name="twitter:description" content={metaDescription} />
 </svelte:head>
 
 <div class="page" style={themeStyle}>
@@ -294,7 +352,14 @@
           <div class="hero-images">
             {#each $siteContent.hero.images || [] as img, imgI}
               <div class="hero-image-item">
-                <img src={img.url} alt="" class="hero-image-img" style="height: {img.scale * 80}px;" />
+                <img
+                  src={optimizeImage(img.url, Math.round(img.scale * 640))}
+                  alt=""
+                  class="hero-image-img"
+                  style="height: {img.scale * 80}px;"
+                  fetchpriority="high"
+                  decoding="async"
+                />
                 {#if $isAdmin}
                   <div class="hero-image-controls">
                     <button class="hero-image-ctrl" disabled={imgI === 0} onclick={() => moveHeroImage(imgI, -1)}>&#9664;</button>
@@ -740,7 +805,15 @@
                   {/if}
                   <div class="speaker-photo-wrapper">
                     {#if speaker.photoUrl}
-                      <img src={speaker.photoUrl} alt={speaker.name} class="speaker-photo-image" />
+                      <img
+                        src={optimizeImage(speaker.photoUrl, 384)}
+                        srcset={imageSrcset(speaker.photoUrl, [256, 384, 512, 640])}
+                        sizes="(max-width: 640px) 88vw, (max-width: 1100px) 44vw, 240px"
+                        alt={speaker.name}
+                        class="speaker-photo-image"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     {:else}
                       <div class="speaker-photo-placeholder">Фото</div>
                     {/if}
@@ -1357,7 +1430,9 @@
           {#if loginError}
             <div class="modal-error">{loginError}</div>
           {/if}
-          <button type="submit" class="modal-submit">Войти</button>
+          <button type="submit" class="modal-submit" disabled={isLoggingIn}>
+            {isLoggingIn ? 'Проверяем...' : 'Войти'}
+          </button>
         </form>
       </div>
     </div>
