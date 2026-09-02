@@ -1,12 +1,30 @@
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 import type { SiteContent } from './content';
-import snapshot from './content.snapshot.json';
 
 export const ADMIN_TOKEN_KEY = 'gestalt-admin-token';
 
 export const isAdmin = writable(false);
-export const siteContent = writable<SiteContent>(structuredClone(snapshot as unknown as SiteContent));
+/**
+ * Заглушка до гидрации: страница сразу делает siteContent.set(data.content),
+ * поэтому реальный контент в клиентский бандл класть незачем.
+ */
+const emptyContent: SiteContent = {
+  primaryColor: '#0aa5b5',
+  hero: {
+    label: '',
+    heading: '',
+    subheading: '',
+    primaryButtonText: '',
+    secondaryButtonText: '',
+    details: [],
+  },
+  sections: [],
+  footerText: '',
+  footerNote: '',
+};
+
+export const siteContent = writable<SiteContent>(emptyContent);
 export const contentStatus = writable<'idle' | 'loading' | 'saving' | 'error'>('idle');
 export const contentError = writable<string | null>(null);
 
