@@ -9,11 +9,17 @@
 	<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
 	<link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
 
-	<!-- Шрифт лежит рядом с сайтом: без сторонних CDN, которые тормозят из РФ. -->
 	<link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/Geometria.woff2" crossorigin />
 	<link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/Geometria-Bold.woff2" crossorigin />
 
 	%sveltekit.head%
+	<!-- This comes after the compiled stylesheet so its CDN-relative font faces
+	     win over the legacy /fonts/* declarations in app.css. -->
+	<style>
+		@font-face{font-family:"Geometria";font-style:normal;font-weight:400;font-display:swap;src:url("%sveltekit.assets%/fonts/Geometria.woff2") format("woff2"),url("%sveltekit.assets%/fonts/Geometria.woff") format("woff")}
+		@font-face{font-family:"Geometria";font-style:normal;font-weight:500;font-display:swap;src:url("%sveltekit.assets%/fonts/Geometria-Medium.woff2") format("woff2"),url("%sveltekit.assets%/fonts/Geometria-Medium.woff") format("woff")}
+		@font-face{font-family:"Geometria";font-style:normal;font-weight:700;font-display:swap;src:url("%sveltekit.assets%/fonts/Geometria-Bold.woff2") format("woff2"),url("%sveltekit.assets%/fonts/Geometria-Bold.woff") format("woff")}
+	</style>
 </head>
 <body data-sveltekit-preload-data="hover">
 	<div style="display: contents">%sveltekit.body%</div>
