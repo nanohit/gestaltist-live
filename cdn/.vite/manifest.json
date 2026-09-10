@@ -1,0 +1,28 @@
+{
+  "src/assets/fonts/Geometria-Bold.woff2": {
+    "file": "assets/Geometria-Bold-DxOZpqi3.woff2",
+    "src": "src/assets/fonts/Geometria-Bold.woff2"
+  },
+  "src/assets/fonts/Geometria-Medium.woff2": {
+    "file": "assets/Geometria-Medium-Bsx9Egh8.woff2",
+    "src": "src/assets/fonts/Geometria-Medium.woff2"
+  },
+  "src/assets/fonts/Geometria.woff2": {
+    "file": "assets/Geometria-D5i-1-CC.woff2",
+    "src": "src/assets/fonts/Geometria.woff2"
+  },
+  "src/spa/main.ts": {
+    "file": "assets/main-BXhqF9FY.js",
+    "name": "main",
+    "src": "src/spa/main.ts",
+    "isEntry": true,
+    "css": [
+      "assets/main-C9QzTGLP.css"
+    ],
+    "assets": [
+      "assets/Geometria-D5i-1-CC.woff2",
+      "assets/Geometria-Medium-Bsx9Egh8.woff2",
+      "assets/Geometria-Bold-DxOZpqi3.woff2"
+    ]
+  }
+}
