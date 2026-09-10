@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && node scripts/prune-vercel-static.mjs",
     "preview": "vite preview"
   },
   "type": "module",
