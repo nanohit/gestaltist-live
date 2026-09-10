@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Geometria.woff2") format("woff2"), url("/fonts/Geometria.woff") format("woff");
+  src: url("./assets/fonts/Geometria.woff2") format("woff2");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/Geometria-Medium.woff2") format("woff2"), url("/fonts/Geometria-Medium.woff") format("woff");
+  src: url("./assets/fonts/Geometria-Medium.woff2") format("woff2");
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/Geometria-Bold.woff2") format("woff2"), url("/fonts/Geometria-Bold.woff") format("woff");
+  src: url("./assets/fonts/Geometria-Bold.woff2") format("woff2");
 }
 
 * {

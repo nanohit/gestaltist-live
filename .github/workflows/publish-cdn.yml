@@ -1,0 +1,45 @@
+name: Сборка фронтенда для jsDelivr
+
+# Собирает SPA в cdn/ и коммитит в main — этот коммит и деплоит Vercel
+# (см. scripts/vercel-ignore.sh), а jsDelivr отдаёт cdn/ по его хэшу.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['cdn/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-cdn
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ !startsWith(github.event.head_commit.message, 'chore(cdn):') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build:cdn
+
+      - name: Коммит сборки
+        run: |
+          echo "$GITHUB_SHA" > cdn/SOURCE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A cdn
+          git commit -m "chore(cdn): сборка ${GITHUB_SHA::7}"
+          for attempt in 1 2 3; do
+            git push origin HEAD:main && exit 0
+            git pull --rebase origin main
+          done
+          exit 1

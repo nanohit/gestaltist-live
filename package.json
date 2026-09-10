@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:cdn": "svelte-kit sync && vite build -c vite.spa.config.js",
     "preview": "vite preview"
   },
   "type": "module",

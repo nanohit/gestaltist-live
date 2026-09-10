@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { page } from '$app/state';
   import EditableText from '../components/EditableText.svelte';
   import { generateThemeVars } from '$lib/color';
   import {
@@ -9,15 +8,12 @@
     contentStatus,
     contentError,
     updateContent,
-    loadContent,
+    refreshIfStale,
+    hasUnsavedChanges,
     setAdminToken,
     clearAdminToken,
     ADMIN_TOKEN_KEY,
   } from '$lib/stores';
-  import { optimizeImage, imageSrcset } from '$lib/image';
-
-  let { data } = $props();
-  siteContent.set(data.content);
   import {
     createEmptyDay,
     createEmptySession,
@@ -57,21 +53,8 @@
 
   let themeStyle = $derived(generateThemeVars($siteContent.primaryColor || '#0aa5b5'));
 
+  // SEO-теги отдаёт HTML-загрузчик с сервера; здесь только живой заголовок вкладки.
   let metaTitle = $derived($siteContent.hero.heading?.trim() || 'Конференция');
-  let metaDescription = $derived.by(() => {
-    const parts: string[] = [$siteContent.hero.label, $siteContent.hero.subheading];
-    for (const d of $siteContent.hero.details ?? []) {
-      if (d.value && !d.isList) parts.push(`${d.label}: ${d.value}`);
-    }
-    return parts
-      .map((p) => (p ?? '').trim())
-      .filter(Boolean)
-      .join('. ')
-      .replace(/\s+/g, ' ')
-      .slice(0, 300);
-  });
-  let metaImage = $derived($siteContent.hero.images?.[0]?.url ?? '');
-  let canonicalUrl = $derived(page.url.origin + page.url.pathname);
 
   onMount(() => {
     // Старая сессия хранила только флаг — переносим её на токен.
@@ -80,9 +63,17 @@
     }
     if (localStorage.getItem(ADMIN_TOKEN_KEY)) {
       isAdmin.set(true);
-      // Страница приходит из edge-кэша, админу нужен свежий контент.
-      loadContent();
+      // Страница приходит из edge-кэша, админу нужна последняя версия.
+      refreshIfStale();
     }
+
+    const warnUnsaved = (event: BeforeUnloadEvent) => {
+      if (!hasUnsavedChanges()) return;
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', warnUnsaved);
+    return () => window.removeEventListener('beforeunload', warnUnsaved);
   });
 
   function handleOpenLogin() {
@@ -115,7 +106,7 @@
         return;
       }
       setAdminToken(payload.token);
-      await loadContent();
+      await refreshIfStale();
       isLoginModalOpen = false;
       passwordField = '';
     } catch {
@@ -299,24 +290,6 @@
 
 <svelte:head>
   <title>{metaTitle}</title>
-  <meta name="description" content={metaDescription} />
-  <meta name="theme-color" content={$siteContent.primaryColor || '#0aa5b5'} />
-  <link rel="canonical" href={canonicalUrl} />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content={metaTitle} />
-  <meta property="og:locale" content="ru_RU" />
-  <meta property="og:title" content={metaTitle} />
-  <meta property="og:description" content={metaDescription} />
-  <meta property="og:url" content={canonicalUrl} />
-  {#if metaImage}
-    <meta property="og:image" content={metaImage} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={metaImage} />
-  {:else}
-    <meta name="twitter:card" content="summary" />
-  {/if}
-  <meta name="twitter:title" content={metaTitle} />
-  <meta name="twitter:description" content={metaDescription} />
 </svelte:head>
 
 <div class="page" style={themeStyle}>
@@ -353,7 +326,7 @@
             {#each $siteContent.hero.images || [] as img, imgI}
               <div class="hero-image-item">
                 <img
-                  src={optimizeImage(img.url, Math.round(img.scale * 640))}
+                  src={img.url}
                   alt=""
                   class="hero-image-img"
                   style="height: {img.scale * 80}px;"
@@ -806,9 +779,7 @@
                   <div class="speaker-photo-wrapper">
                     {#if speaker.photoUrl}
                       <img
-                        src={optimizeImage(speaker.photoUrl, 384)}
-                        srcset={imageSrcset(speaker.photoUrl, [256, 384, 512, 640])}
-                        sizes="(max-width: 640px) 88vw, (max-width: 1100px) 44vw, 240px"
+                        src={speaker.photoUrl}
                         alt={speaker.name}
                         class="speaker-photo-image"
                         loading="lazy"

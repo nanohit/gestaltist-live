@@ -25,13 +25,49 @@ function getClient(): Client | null {
 
 async function init(db: Client) {
   if (initialized) return;
-  await db.execute(`
-    CREATE TABLE IF NOT EXISTS content (
+  await db.batch([
+    `CREATE TABLE IF NOT EXISTS content (
       id TEXT PRIMARY KEY DEFAULT 'main',
       data TEXT NOT NULL
-    )
-  `);
+    )`,
+    `CREATE TABLE IF NOT EXISTS meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    )`,
+  ]);
   initialized = true;
+}
+
+/** Последняя публикация content.json в ветку content (см. publish.ts). */
+export interface Published {
+  /** Коммит — по нему jsDelivr отдаёт неизменяемый файл. */
+  commit: string;
+  /** git-хэш файла — нужен GitHub API для следующего обновления. */
+  blob: string;
+}
+
+export async function readPublished(): Promise<Published | null> {
+  const db = getClient();
+  if (!db) return null;
+  try {
+    await init(db);
+    const result = await db.execute(`SELECT value FROM meta WHERE key = 'published'`);
+    if (result.rows.length === 0) return null;
+    const parsed = JSON.parse(result.rows[0].value as string);
+    return parsed?.commit && parsed?.blob ? (parsed as Published) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function writePublished(published: Published): Promise<void> {
+  const db = getClient();
+  if (!db) throw new Error('Хранилище не настроено: не задан TURSO_DB_URL');
+  await init(db);
+  await db.execute({
+    sql: `INSERT OR REPLACE INTO meta (key, value) VALUES ('published', ?)`,
+    args: [JSON.stringify(published)],
+  });
 }
 
 export async function readContent(): Promise<SiteContent> {
