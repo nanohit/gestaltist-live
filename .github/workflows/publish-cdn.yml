@@ -43,3 +43,16 @@ jobs:
             git pull --rebase origin main
           done
           exit 1
+
+      # Первый запрос нового коммита jsDelivr тянет с GitHub несколько секунд —
+      # делаем его сами, пока Vercel собирает деплой.
+      - name: Прогрев jsDelivr
+        continue-on-error: true
+        run: |
+          sha=$(git rev-parse HEAD)
+          for host in cdn.jsdelivr.net fastly.jsdelivr.net; do
+            for file in $(cd cdn && find . -type f ! -path './.vite/*' ! -name SOURCE | sed 's#^\./##'); do
+              curl -s -o /dev/null -w "%{http_code} $host/$file\n" --max-time 20 \
+                "https://$host/gh/${GITHUB_REPOSITORY}@$sha/cdn/$file"
+            done
+          done

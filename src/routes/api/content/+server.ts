@@ -4,6 +4,7 @@ import type { RequestHandler } from './$types';
 import { readContent, writeContent } from '$lib/server/storage';
 import { publishContent } from '$lib/server/publish';
 import { isAuthorized } from '$lib/server/auth';
+import { CONTENT_FILE, JSDELIVR_HOSTS, jsdelivrUrl } from '$lib/cdn';
 
 export const config = { isr: false };
 
@@ -17,6 +18,20 @@ export const GET: RequestHandler = async ({ setHeaders }) => {
     return json({ success: false, error: 'Не удалось загрузить данные' }, { status: 500 });
   }
 };
+
+/**
+ * Первый запрос нового коммита jsDelivr тянет с GitHub несколько секунд —
+ * делаем его сами, чтобы посетителям файл достался уже из кэша.
+ */
+async function warmCdn(commit: string) {
+  await Promise.all(
+    JSDELIVR_HOSTS.map((host) =>
+      fetch(jsdelivrUrl(commit, CONTENT_FILE, host), { signal: AbortSignal.timeout(5000) })
+        .then((res) => res.arrayBuffer())
+        .catch(() => {})
+    )
+  );
+}
 
 /** Сбрасывает edge-кэш загрузчика, чтобы новый хэш контента ушёл посетителям сразу. */
 async function revalidateBootstrap(origin: string) {
@@ -66,7 +81,7 @@ export const PUT: RequestHandler = async ({ request, url }) => {
 
   try {
     const published = await publishContent(payload);
-    await revalidateBootstrap(url.origin);
+    await Promise.all([warmCdn(published.commit), revalidateBootstrap(url.origin)]);
     return json({ success: true, published: true, sha: published.commit });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'ошибка публикации';
