@@ -309,7 +309,10 @@
        "time": "",
        "type": "",
        "title": "Среда, 7 октября",
-       "description": "12:15 - 13:30"
+       "description": "12:15 - 13:30",
+       "modalEnabled": true,
+       "modalTitle": "Среда, 7 октября",
+       "modalBody": "12:15 - 13:30"
       }
      ]
     }
