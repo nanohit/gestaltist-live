@@ -368,7 +368,7 @@
   {
    "id": "speakers",
    "type": "speakers",
-   "visible": false,
+   "visible": true,
    "heading": "Спикеры конференции",
    "navLabel": "Спикеры",
    "speakers": [
