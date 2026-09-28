@@ -69,7 +69,7 @@
        "title": "Лекция",
        "description": "Хломов Даниил",
        "modalEnabled": true,
-       "modalTitle": "Открытие конференции Лекция",
+       "modalTitle": "Лекция",
        "modalBody": "Лекция с обсуждением",
        "modalIsList": false
       },
