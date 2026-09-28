@@ -183,7 +183,7 @@
        "type": "5 октября",
        "title": "12:15 - 13:45",
        "description": "",
-       "modalEnabled": false,
+       "modalEnabled": true,
        "modalTitle": "12:15 - 13:45",
        "modalBody": "Первая линейка мастерских",
        "modalIsList": false
