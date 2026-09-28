@@ -402,16 +402,6 @@
      "photoUrl": "https://i.ibb.co/RGZvbsF3/image.jpg"
     },
     {
-     "name": "Грецкая Валерия",
-     "role": "Гештальт-терапевт, педагог-психолог, практический психолог",
-     "experience": "г. Москва",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/tM8L4z8J/image.jpg"
-    },
-    {
      "name": "Хломов Даниил",
      "role": "Аккредитованный гештальт-терапевт",
      "experience": "г. Уфа",
@@ -420,6 +410,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
+    },
+    {
+     "name": "Грецкая Валерия",
+     "role": "Гештальт-терапевт, педагог-психолог, практический психолог",
+     "experience": "г. Москва",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/tM8L4z8J/image.jpg"
     },
     {
      "name": "Ялозницкая Олеся",
