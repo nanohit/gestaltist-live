@@ -468,16 +468,6 @@
      "photoUrl": "https://i.ibb.co/27kbZHCp/image.jpg"
     },
     {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
-    },
-    {
      "name": "Хломов Даниил",
      "role": "Аккредитованный гештальт-терапевт",
      "experience": "г. Уфа",
@@ -486,6 +476,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Шайхутдинова Асия",
