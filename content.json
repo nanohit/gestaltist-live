@@ -456,7 +456,7 @@
      "photoUrl": "https://i.ibb.co/DfFQXmG8/image.jpg"
     },
     {
-     "name": "Елена Филинкова",
+     "name": "Чемыхина Светлана",
      "role": "Травма-терапевт, аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Челябинск",
      "description": "",
@@ -466,16 +466,6 @@
       "Групповая терапия"
      ],
      "photoUrl": "https://i.ibb.co/27kbZHCp/image.jpg"
-    },
-    {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Наталья Бакетова",
@@ -488,6 +478,16 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/hFZhhZMS/IMG-5424.jpg"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Светлана Пестрякова",
