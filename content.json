@@ -334,14 +334,10 @@
      "date": "Линейка \"Жизнь терапевта\"",
      "sessions": [
       {
-       "time": "Среда",
-       "type": "7 октября",
-       "title": "11:15 - 12:45",
-       "description": "",
-       "modalEnabled": true,
-       "modalTitle": "11:15 - 12:45",
-       "modalBody": "Третья линейка мастерских",
-       "modalIsList": false
+       "time": "00:00 - 00:00",
+       "type": "Тип сессии",
+       "title": "Название сессии",
+       "description": "Описание сессии"
       }
      ]
     }
