@@ -432,16 +432,6 @@
      "photoUrl": "https://i.ibb.co/PvPpjgVz/image.jpg"
     },
     {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
-    },
-    {
      "name": "Елена Лукьянова",
      "role": "Аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Магнитогорск",
@@ -452,6 +442,16 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/4gR73v4k/IMG-5455.jpg"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Галина Колчина",
