@@ -422,6 +422,16 @@
      "photoUrl": "https://i.ibb.co/8n3Ly8vx/image.jpg"
     },
     {
+     "name": "Хломов Даниил",
+     "role": "Аккредитованный гештальт-терапевт",
+     "experience": "г. Уфа",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
+    },
+    {
      "name": "Александрова Юлия",
      "role": "Аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Санкт-Петербург",
@@ -442,16 +452,6 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/nNDZCNtC/image.jpg"
-    },
-    {
-     "name": "Хломов Даниил",
-     "role": "Аккредитованный гештальт-терапевт",
-     "experience": "г. Уфа",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
     },
     {
      "name": "Девятка Анна",
