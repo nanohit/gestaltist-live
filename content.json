@@ -412,16 +412,6 @@
      "photoUrl": "https://i.ibb.co/tM8L4z8J/image.jpg"
     },
     {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
-    },
-    {
      "name": "Ирина Тесля",
      "role": "Аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Магнитогорск",
@@ -432,6 +422,16 @@
       "Индивидуальная терапия"
      ],
      "photoUrl": "https://i.ibb.co/CsV5qgT4/IMG-5425.jpg"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Любовь Лыжникова",
