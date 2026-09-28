@@ -444,7 +444,7 @@
      "photoUrl": "https://i.ibb.co/nNDZCNtC/image.jpg"
     },
     {
-     "name": "Галина Колчина",
+     "name": "Девятка Анна",
      "role": "Клинический психолог, аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Челябинск",
      "description": "",
@@ -454,16 +454,6 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/DfFQXmG8/image.jpg"
-    },
-    {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Елена Филинкова",
@@ -476,6 +466,16 @@
       "Групповая терапия"
      ],
      "photoUrl": "https://i.ibb.co/HTR0wm0g/IMG-5461.jpg"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Наталья Бакетова",
