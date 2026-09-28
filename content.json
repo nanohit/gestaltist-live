@@ -468,6 +468,16 @@
      "photoUrl": "https://i.ibb.co/27kbZHCp/image.jpg"
     },
     {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
+    },
+    {
      "name": "Наталья Бакетова",
      "role": "Клинический психолог, аккредитированный гештальт-терапевт, участница 3 ступени",
      "experience": "г. Магнитогорск",
@@ -478,16 +488,6 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/hFZhhZMS/IMG-5424.jpg"
-    },
-    {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Светлана Пестрякова",
