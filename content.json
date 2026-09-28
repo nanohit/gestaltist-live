@@ -512,6 +512,16 @@
      "photoUrl": "https://i.ibb.co/JR1XbgzF/image.jpg"
     },
     {
+     "name": "Хломов Даниил",
+     "role": "Аккредитованный гештальт-терапевт",
+     "experience": "г. Уфа",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
+    },
+    {
      "name": "Жбанов Александр",
      "role": "Аккредитованный гештальт-терапевт, участница 3 ступени",
      "experience": "г. Магнитогорск",
@@ -531,16 +541,6 @@
       "Индивидуальная терапия"
      ],
      "photoUrl": "https://i.ibb.co/0jym0gg3/image.jpg"
-    },
-    {
-     "name": "Хломов Даниил",
-     "role": "Аккредитованный гештальт-терапевт",
-     "experience": "г. Уфа",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
     },
     {
      "name": "Тарасова Александра",
