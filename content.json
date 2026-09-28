@@ -58,7 +58,7 @@
        "type": "Общий зал",
        "title": "Открытие конференции",
        "description": "",
-       "modalEnabled": true,
+       "modalEnabled": false,
        "modalTitle": "Регистрация участников",
        "modalBody": "Зарегисрированным участникам необходимо получить бейджи и другие материалы конференции",
        "modalIsList": false
