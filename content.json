@@ -533,16 +533,6 @@
      "photoUrl": "https://i.ibb.co/0jym0gg3/image.jpg"
     },
     {
-     "name": "Тарасова Александра",
-     "role": "Аккредитованный гештальт-терапевт, участница 3 ступени",
-     "experience": "г. Уфа",
-     "description": "",
-     "tags": [
-      "Индивидуальная терапия"
-     ],
-     "photoUrl": "https://i.ibb.co/M5hnhq9j/image.jpg"
-    },
-    {
      "name": "Хломов Даниил",
      "role": "Аккредитованный гештальт-терапевт",
      "experience": "г. Уфа",
@@ -551,6 +541,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
+    },
+    {
+     "name": "Тарасова Александра",
+     "role": "Аккредитованный гештальт-терапевт, участница 3 ступени",
+     "experience": "г. Уфа",
+     "description": "",
+     "tags": [
+      "Индивидуальная терапия"
+     ],
+     "photoUrl": "https://i.ibb.co/M5hnhq9j/image.jpg"
     }
    ]
   },
