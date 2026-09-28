@@ -46,7 +46,7 @@
   {
    "id": "program",
    "type": "program",
-   "visible": false,
+   "visible": true,
    "heading": "Расписание",
    "navLabel": "Расписание",
    "days": [
