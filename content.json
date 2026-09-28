@@ -432,7 +432,7 @@
      "photoUrl": "https://i.ibb.co/PvPpjgVz/image.jpg"
     },
     {
-     "name": "Елена Лукьянова",
+     "name": "Богомолова Анна",
      "role": "Аккредитованный гештальт-терапевт, супервизор",
      "experience": "г. Магнитогорск",
      "description": "Ведущая групп, организационный консультант",
@@ -442,16 +442,6 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/nNDZCNtC/image.jpg"
-    },
-    {
-     "name": "Татьяна Тихонина",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Галина Колчина",
@@ -464,6 +454,16 @@
       "Групповая работа"
      ],
      "photoUrl": "https://i.ibb.co/KzzmSSfv/IMG-5460.jpg"
+    },
+    {
+     "name": "Татьяна Тихонина",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": "https://i.ibb.co/FkhM09yy/IMG-5495.jpg"
     },
     {
      "name": "Елена Филинкова",
