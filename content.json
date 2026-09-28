@@ -71,7 +71,7 @@
        "modalEnabled": true,
        "modalTitle": "Открытие конференции Лекция",
        "modalBody": "Лекция с обсуждением",
-       "modalIsList": true
+       "modalIsList": false
       },
       {
        "time": "11:45 - 12:00",
