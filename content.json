@@ -128,16 +128,6 @@
        "modalBody": "Место для неформального общения и обсуждения всех тем конференции"
       },
       {
-       "time": "12:45 - 14:15",
-       "type": "Обед",
-       "title": "Обед",
-       "description": "",
-       "modalEnabled": true,
-       "modalTitle": "Обед",
-       "modalBody": "Обеденный перерыв",
-       "modalIsList": false
-      },
-      {
        "time": "14:15 - 15:00",
        "type": "Аудитория 117",
        "title": "Доклад",
