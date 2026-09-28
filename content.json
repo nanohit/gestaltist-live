@@ -171,7 +171,7 @@
   {
    "id": "s-1773896913495-ayc3",
    "type": "program",
-   "visible": false,
+   "visible": true,
    "heading": "Программа",
    "navLabel": "Программа",
    "days": [
