@@ -115,8 +115,8 @@
        "description": "Спикеры конференции",
        "modalEnabled": true,
        "modalTitle": "Доклады",
-       "modalBody": "Работа с ПТСР и кПТСР.",
-       "modalIsList": false
+       "modalBody": "Работа с ПТСР и кПТСР. ДЕВЯТКА АННА",
+       "modalIsList": true
       },
       {
        "time": "11:15 - 12:45",
