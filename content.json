@@ -535,6 +535,16 @@
       "Индивидуальная терапия"
      ],
      "photoUrl": "https://i.ibb.co/M5hnhq9j/image.jpg"
+    },
+    {
+     "name": "Имя спикера",
+     "role": "Роль",
+     "experience": "Опыт",
+     "description": "Описание спикера",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": ""
     }
    ]
   },
