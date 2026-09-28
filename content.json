@@ -105,7 +105,8 @@
        "description": "Спикеры конференции",
        "modalEnabled": true,
        "modalTitle": "Лекция",
-       "modalBody": "Тихонина Татьяна"
+       "modalBody": "Тихонина Татьяна",
+       "modalIsList": true
       },
       {
        "time": "10:45 - 11:00",
