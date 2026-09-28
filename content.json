@@ -382,16 +382,6 @@
    "navLabel": "Спикеры",
    "speakers": [
     {
-     "name": "Хломов Даниил",
-     "role": "",
-     "experience": "г. Уфа",
-     "description": "",
-     "tags": [
-      "Новый тег"
-     ],
-     "photoUrl": "https://i.ibb.co/6Scd0pg/image.png"
-    },
-    {
      "name": "Кириллова Елена",
      "role": "Гештальт-терапевт, супервизор МГИ, клинический психолог",
      "experience": "г. Тольяттти",
