@@ -70,7 +70,8 @@
        "description": "Хломов Даниил",
        "modalEnabled": true,
        "modalTitle": "Открытие конференции Лекция",
-       "modalBody": "Вступительная лекция"
+       "modalBody": "Лекция с обсуждением",
+       "modalIsList": true
       },
       {
        "time": "11:45 - 12:00",
