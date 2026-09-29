@@ -540,6 +540,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/cX8L6CQG/IMG-1878.jpg"
+    },
+    {
+     "name": "Имя спикера",
+     "role": "Роль",
+     "experience": "Опыт",
+     "description": "Описание спикера",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": ""
     }
    ]
   },
