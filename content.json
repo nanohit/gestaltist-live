@@ -510,16 +510,6 @@
      "photoUrl": "https://i.ibb.co/bjnP4g0v/image.jpg"
     },
     {
-     "name": "Калужникова Наталья",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Ростов-на-Дону",
-     "description": "",
-     "tags": [
-      "Мастерская"
-     ],
-     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
-    },
-    {
      "name": "Бескова Елена",
      "role": "Гештальт-терапевт, супервизор, ведущий тренер МГИ",
      "experience": "г. Тольятти",
@@ -528,6 +518,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/W4dJvgSM/1734923-F-DED3-47-B6-85-C8-CDC51-B5168-E2.jpg"
+    },
+    {
+     "name": "Калужникова Наталья",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Ростов-на-Дону",
+     "description": "",
+     "tags": [
+      "Мастерская"
+     ],
+     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
     },
     {
      "name": "Куликов Яков",
