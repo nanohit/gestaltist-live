@@ -568,6 +568,16 @@
       "Доклад с обсуждением"
      ],
      "photoUrl": "https://i.ibb.co/xKgWzG7J/IMG-1897.jpg"
+    },
+    {
+     "name": "Имя спикера",
+     "role": "Роль",
+     "experience": "Опыт",
+     "description": "Описание спикера",
+     "tags": [
+      "Новый тег"
+     ],
+     "photoUrl": ""
     }
    ]
   },
