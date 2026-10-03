@@ -490,16 +490,6 @@
      "photoUrl": "https://i.ibb.co/NgBj1VG9/IMG-1882.jpg"
     },
     {
-     "name": "Тихонина Татьяна",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Магнитогорск",
-     "description": "",
-     "tags": [
-      "Круглый стол"
-     ],
-     "photoUrl": "https://i.ibb.co/5XrhKSVR/IMG-1881.jpg"
-    },
-    {
      "name": "Бескова Елена",
      "role": "Гештальт-терапевт, супервизор, ведущий тренер МГИ",
      "experience": "г. Тольятти",
@@ -508,6 +498,16 @@
       "Новый тег"
      ],
      "photoUrl": "https://i.ibb.co/W4dJvgSM/1734923-F-DED3-47-B6-85-C8-CDC51-B5168-E2.jpg"
+    },
+    {
+     "name": "Тихонина Татьяна",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Магнитогорск",
+     "description": "",
+     "tags": [
+      "Круглый стол"
+     ],
+     "photoUrl": "https://i.ibb.co/5XrhKSVR/IMG-1881.jpg"
     },
     {
      "name": "Шайхутдинова Асия",
