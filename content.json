@@ -530,16 +530,6 @@
      "photoUrl": "https://i.ibb.co/3q6Pnvc/IMG-1870.jpg"
     },
     {
-     "name": "Кулажникова Наталья",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Ростов-на-Дону",
-     "description": "",
-     "tags": [
-      "Мастерская"
-     ],
-     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
-    },
-    {
      "name": "Шутов Максим",
      "role": "Эксперт по ИИ, лидер ИИ-решений технологической компании",
      "experience": "",
@@ -548,6 +538,16 @@
       "Интервью с обсуждением"
      ],
      "photoUrl": "https://i.ibb.co/kg07cb1y/photo-2026-10-07-11-21-05.jpg"
+    },
+    {
+     "name": "Кулажникова Наталья",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Ростов-на-Дону",
+     "description": "",
+     "tags": [
+      "Мастерская"
+     ],
+     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
     },
     {
      "name": "Жбанов Александр",
