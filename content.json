@@ -520,16 +520,6 @@
      "photoUrl": "https://i.ibb.co/bjnP4g0v/image.jpg"
     },
     {
-     "name": "Кулажникова Наталья",
-     "role": "Гештальт-терапевт, супервизор",
-     "experience": "г. Ростов-на-Дону",
-     "description": "",
-     "tags": [
-      "Мастерская"
-     ],
-     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
-    },
-    {
      "name": "Куликов Яков",
      "role": "Гештальт-терапевт, супервизор, ассоциированный тренер МГИ",
      "experience": "г. Ростов-на-Дону",
@@ -538,6 +528,16 @@
       "Мастерская"
      ],
      "photoUrl": "https://i.ibb.co/3q6Pnvc/IMG-1870.jpg"
+    },
+    {
+     "name": "Кулажникова Наталья",
+     "role": "Гештальт-терапевт, супервизор",
+     "experience": "г. Ростов-на-Дону",
+     "description": "",
+     "tags": [
+      "Мастерская"
+     ],
+     "photoUrl": "https://i.ibb.co/8LyrnjXV/IMG-1869.jpg"
     },
     {
      "name": "Шутов Максим",
