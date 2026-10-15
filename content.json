@@ -367,7 +367,7 @@
   {
    "id": "pricing",
    "type": "pricing",
-   "visible": true,
+   "visible": false,
    "heading": "Стоимость участия",
    "navLabel": "Стоимость",
    "options": [
