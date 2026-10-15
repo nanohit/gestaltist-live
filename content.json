@@ -140,7 +140,7 @@
        "modalEnabled": true,
        "modalTitle": "Интервью с экспертом в области ИИ",
        "modalBody": "Шутов Максим\nЭксперт по ИИ, лидер ИИ-решений технологической компании",
-       "modalIsList": true
+       "modalIsList": false
       },
       {
        "time": "10:55 - 12:10",
